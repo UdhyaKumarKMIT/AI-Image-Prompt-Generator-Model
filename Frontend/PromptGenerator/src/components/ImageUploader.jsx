@@ -45,7 +45,6 @@ export default function ImageUploader({ setGeneratedText }) {
       );
 
       setGeneratedText(response.data.caption);
-      alert(response.data.caption);
     } catch (err) {
       alert("Failed to generate caption. Check backend.");
     }

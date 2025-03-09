@@ -10,10 +10,10 @@ function Footer() {
       email: "udhyak2004@gmail.com",
     },
     {
-      name: "Mithun Aadhitya",
-      github: "https://github.com/UdhyaKumarKMIT",
-      githubHandle: "UdhyaKumarKMIT",
-      email: "udhyak2004@gmail.com",
+      name: "Mithun Aaditya S",
+      github: "https://github.com/mithunaaditya",
+      githubHandle: "mithunaaditya",
+      email: "mithun.aadityas@gmail.com",
     },
     {
       name: "Gopika S",
