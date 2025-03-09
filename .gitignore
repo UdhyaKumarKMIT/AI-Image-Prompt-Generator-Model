@@ -1,10 +1,10 @@
  
 cache/
-Backend/__pycache__/
-Backend/Include/
-Backend/Lib/
-Backend/Scripts/
-Backend/share/
+venv/__pycache__/
+venv/Include/
+venv/Lib/
+venv/Scripts/
+venv/share/
 
-Backend/pyvenv.cfg
-Backend/api_key.txt
+venv/pyvenv.cfg
+venv/api_key.txt

@@ -10,3 +10,4 @@ accelerate
 transformers>=4.27.1
 IPython
 flask_cors
+pymongo
