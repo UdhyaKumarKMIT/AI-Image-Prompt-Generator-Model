@@ -1,3 +1,4 @@
+// ImageUploader.jsx
 import { useState } from "react";
 import axios from "axios";
 
@@ -37,12 +38,14 @@ export default function ImageUploader({ setGeneratedText }) {
     formData.append("image", file);
 
     try {
-      const response = await axios.post("http://127.0.0.1:5000/generate_prompt", formData, {
-        headers: { "Content-Type": "multipart/form-data" },
-      });
+      const response = await axios.post(
+        "http://127.0.0.1:5000/generate_prompt", 
+        formData, 
+        { headers: { "Content-Type": "multipart/form-data" } }
+      );
 
       setGeneratedText(response.data.caption);
-      alert(response.data.caption)
+      alert(response.data.caption);
     } catch (err) {
       alert("Failed to generate caption. Check backend.");
     }
@@ -53,13 +56,18 @@ export default function ImageUploader({ setGeneratedText }) {
       {/* Upload Area */}
       <label
         htmlFor="fileInput"
-        className="border-2 border-dashed border-gray-400 rounded-lg w-[600px] h-[350px] flex flex-col items-center justify-center text-gray-500
-                   cursor-pointer hover:border-orange-500 transition duration-300"
+        className="border-2 border-dashed border-gray-400 rounded-lg w-[600px] h-[350px] 
+                   flex flex-col items-center justify-center text-gray-500 cursor-pointer 
+                   hover:border-orange-500 transition duration-300"
         onDragOver={(e) => e.preventDefault()}
         onDrop={handleDrop}
       >
         {image ? (
-          <img src={image} alt="Uploaded" className="w-full h-full object-cover rounded-lg" />
+          <img 
+            src={image} 
+            alt="Uploaded" 
+            className="w-full h-full object-cover rounded-lg" 
+          />
         ) : (
           <p className="text-center text-2xl">
             Drop Image Here  

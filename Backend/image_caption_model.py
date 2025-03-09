@@ -126,18 +126,18 @@ class Interrogator():
         trending_list.extend(["featured on "+site for site in sites])
         trending_list.extend([site+" contest winner" for site in sites])
 
-        raw_artists = load_list('venv/data/artists.txt')
+        raw_artists = load_list('data/artists.txt')
 
         artists = [f"by {a}" for a in raw_artists]
         artists.extend([f"inspired by {a}" for a in raw_artists])
 
         self._prepare_clip()
         self.artists = LabelTable(artists, "artists", self)
-        self.flavors = LabelTable(load_list('venv/data/flavors.txt'), "flavors", self)
-        self.mediums = LabelTable(load_list('venv/data/mediums.txt'), "mediums", self)
-        self.movements = LabelTable(load_list('venv/data/movements.txt'), "movements", self)
+        self.flavors = LabelTable(load_list('data/flavors.txt'), "flavors", self)
+        self.mediums = LabelTable(load_list('data/mediums.txt'), "mediums", self)
+        self.movements = LabelTable(load_list('data/movements.txt'), "movements", self)
         self.trendings = LabelTable(trending_list, "trendings", self)
-        self.negative = LabelTable(load_list('venv/data/negative.txt'), "negative", self)
+        self.negative = LabelTable(load_list('data/negative.txt'), "negative", self)
 
         end_time = time.time()
         if not config.quiet:
