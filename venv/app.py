@@ -35,6 +35,12 @@ def upload_file():
         return jsonify({"error": "No selected file"}), 400
 
     file_path = os.path.join(UPLOAD_FOLDER, file.filename)
+
+    existing_entry = collection.find_one({"image_path": file_path})
+    if existing_entry:
+        print("File exisit in db")
+        return jsonify({"caption": "this is from Databse mongodb "+existing_entry["generated_caption"]})
+
     file.save(file_path)  # Save the file
         
     i = Image.open(file_path)

@@ -11,9 +11,9 @@ function Footer() {
     },
     {
       name: "Mithun Aadhitya",
-      github: "https://github.com/UdhyaKumarKMIT",
-      githubHandle: "UdhyaKumarKMIT",
-      email: "udhyak2004@gmail.com",
+      github: "https://github.com/mithunaaditya",
+      githubHandle: "MithunAaaditya",
+      email: "mithunaaditya@gmail.com",
     },
     {
       name: "Gopika S",
