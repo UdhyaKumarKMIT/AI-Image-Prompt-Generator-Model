@@ -6,7 +6,7 @@ const App = () => {
   return (
     <>
       <Navbar />
-      <div className="max-w-7xl mx-auto pt-20 px-6">
+      <div id="top" className="max-w-7xl mx-auto pt-20 px-6">
         <HeroSection />
         <br></br>
         <SampleImages />

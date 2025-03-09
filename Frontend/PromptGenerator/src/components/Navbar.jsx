@@ -2,6 +2,7 @@ import { Menu, X } from "lucide-react";
 import { useState } from "react";
 import logo from "../assets/logo.png" ;
 import { navItems } from "../constants";
+import Header from "./Header";
 
 const Navbar = () => {
   const [mobileDrawerOpen, setMobileDrawerOpen] = useState(false);
@@ -11,22 +12,33 @@ const Navbar = () => {
   };
 
   return (
-    <nav className="sticky top-0 z-50 py-3 backdrop-blur-lg border-b border-neutral-700/80">
+    <nav id="nav" className="sticky top-0 z-50 py-3 backdrop-blur-lg border-b border-neutral-700/80">
       <div className="container px-4 mx-auto relative lg:text-sm">
         <div className="flex justify-between items-center">
           <div className="flex items-center flex-shrink-0">
             <img className="h-20 w-30 mr-2" src={logo} alt="Logo" />
-            <span className="text-xl tracking-tight">Image Caption AI</span>
+            <span className="text-xl tracking-tight">AI Image Prompt</span>
           </div>
-          <ul className="hidden lg:flex ml-14 space-x-12">
-            {navItems.map((item, index) => (
-              <li key={index}>
-                <a href={item.href}>{item.label}</a>
-              </li>
-            ))}
-          </ul>
-          <div className="hidden lg:flex justify-center space-x-12 items-center">
-            <a href="#" className="py-2 px-3 border rounded-md">
+          <ul className="hidden lg:flex ml-14 mr-10 space-x-12">
+  {navItems.map((item, index) => (
+    <li key={index}>
+      <a 
+        href={item.href} 
+        className="px-4 py-2 rounded-lg transform transition duration-300 ease-in-out 
+                   hover:scale-105 hover:bg-orange-500 hover:text-white 
+                   hover:shadow-[0px_4px_10px_rgba(255,165,0,0.5)]"
+        target={item.label === "Github" ? "_blank" : "_self"} 
+        rel={item.label === "Github" ? "noopener noreferrer" : ""}
+      >
+        {item.label}
+      </a>
+    </li>
+  ))}
+</ul>
+
+
+           {/* <div className="hidden lg:flex justify-center space-x-12 items-center">
+         <a href="#" className="py-2 px-3 border rounded-md">
               Sign In
             </a>
             <a
@@ -34,8 +46,8 @@ const Navbar = () => {
               className="bg-gradient-to-r from-orange-500 to-orange-800 py-2 px-3 rounded-md"
             >
               Create an account
-            </a>
-          </div>
+            </a> </div>*/} 
+          
           <div className="lg:hidden md:flex flex-col justify-end">
             <button onClick={toggleNavbar}>
               {mobileDrawerOpen ? <X /> : <Menu />}
@@ -65,7 +77,9 @@ const Navbar = () => {
           </div>
         )}
       </div>
+    
     </nav>
+    
   );
 };
 

@@ -1,9 +1,9 @@
 
 export const navItems = [
-  { label: "Home", href: "./app.jsx" },
-  { label: "Caption Generator", href: "#" },
-  { label: "Github", href: "#" },
-  { label: "Developers", href: "#" },
+  { label: "Home", href: "#top" },
+  { label: "Caption Generator", href: "#herosection" },
+  { label: "Github", href: "https://github.com/UdhyaKumarKMIT/AI-Image-Prompt-Generator-Model" },
+  { label: "Developers", href: "#contributors" },
 ];
 
 

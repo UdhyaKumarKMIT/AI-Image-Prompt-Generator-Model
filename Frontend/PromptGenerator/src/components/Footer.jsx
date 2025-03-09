@@ -24,7 +24,7 @@ function Footer() {
   ];
 
   return (
-    <div className="bg-neutral-900 text-white p-10 mt-10 rounded-t-lg shadow-md">
+    <div id="contributors" className="bg-neutral-900 text-white p-10 mt-10 rounded-t-lg shadow-md">
       {/* Footer Heading */}
       <h2 className="text-3xl font-bold text-center text-orange-400 uppercase tracking-wide">
         Contributors

@@ -9,8 +9,8 @@ const HeroSection = () => {
   const [error, setError] = useState("");
 
   return (
-    <div className="flex flex-col items-center mt-6 lg:mt-12">
-      <Header />
+    <div id="herosection" className="flex flex-col items-center mt-6 lg:mt-12">
+       <Header />
       <UploadAndTextSection 
         generatedText={generatedText} 
         setGeneratedText={setGeneratedText} 
