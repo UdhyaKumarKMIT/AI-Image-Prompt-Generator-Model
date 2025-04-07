@@ -25,6 +25,23 @@ The output will be in json format, with the key as "output".
 Input:
 """
 
+simple_prompt = """
+You are a model for giving simple description of an image from a stable diffusion prompt and CLIP Caption.
+You will be given a stable diffusion prompt. You will analyse it. You will then give the description of the image.
+You will also be given a CLIP caption for that image. You will integrate both, to give single output.
+The output must the atmost 1 sentence. It must be coherenet and readable. Even a 5 year old must be able to understand the image
+The output will be in json format, with the key as "output".
+Input:
+"""
+
+user_prompt = """
+You are a model for integrating user suggesions and stable diffusion prompts.
+You will be given stable diffusion prompts and changes to the prompt given by the user.
+You have to integrate the user changes intelligently with the given stable diffusion prompt.
+The output will be in json format, with the key as "output".
+Input:
+"""
+
 import json
 
 from openai import OpenAI
@@ -187,8 +204,9 @@ def score_prompt_refinements(raw_caption, prompts, image_path):
 
     return sorted_prompts
 
+# Generate PROTEGI Caption
+# Input: Initial caption and Image Path
 def generator(caption_input, image_path):
-# Integrate all the steps
     T = 1
 
     start = [caption_input]
@@ -215,3 +233,35 @@ def generator(caption_input, image_path):
             start.append(p[0])
         print(start)
     return start
+
+# Simplify PROTEGI output to simple language
+# Input: Initial Caption and PROTEGI output
+def simple_implement(caption, prompt):
+    p = simple_prompt+prompt+"\nCLIP:"+caption+"\nOutput"
+    response = client.chat.completions.create(
+    model="deepseek-chat",
+    messages=[
+        {"role": "system", "content": "You are a model for implementing criticisms to transform a prompt."},
+        {"role": "user", "content": p},
+    ],
+    stream=False
+    )
+    x = response.choices[0].message.content
+    y = parse_json_garbage(x)
+    return y["output"]
+
+# Integrate user changes to PROTEGI output
+# Input: user changes and PROTEGI output
+def user_implement(user, prompt):
+    p = user_prompt+prompt+"\nUserChanges:"+user+"\nOutput"
+    response = client.chat.completions.create(
+    model="deepseek-chat",
+    messages=[
+        {"role": "system", "content": "You are a model for implementing criticisms to transform a prompt."},
+        {"role": "user", "content": p},
+    ],
+    stream=False
+    )
+    x = response.choices[0].message.content
+    y = parse_json_garbage(x)
+    return y["output"]

@@ -84,7 +84,7 @@ def generating_image():
         "generated_image_path": image_path
     }
     #collection.insert_one(generated_data)
-    image_path = "Images\\images3.jpg" 
+    image_path = "D:/Projects/New P/AI-Image-Prompt-Generator-Model/uploads/3..webp" 
     with open(image_path, "rb") as img_file:
         base64_string = base64.b64encode(img_file.read()).decode("utf-8")
 
