@@ -42,6 +42,17 @@ The output will be in json format, with the key as "output".
 Input:
 """
 
+ocr_promt = """
+You are a model for integration ocr information of an image with a stable diffusion prompt for generating the image.
+The ocr is the text found in the image.
+You will analyse the ocr and the prompt such that it the prompt implements the ocr information in generating the image more accurately.
+If the ocr information is irrelevant to the stable diffusion prompt or cannot be integrated properly with the stable diffusion prompt, 
+you will output the original stable diffusion prompt.
+Remember, the ocr information is to increase accuracy of the stable diffusion prompt.
+The output will be in json format, with the key as "output".
+Input:
+"""
+
 import json
 
 from openai import OpenAI
@@ -233,6 +244,24 @@ def generator(caption_input, image_path):
             start.append(p[0])
         print(start)
     return start
+
+
+# Integrate OCR info and PROTEGI ouput
+# Input: OCR info and PROTEGI output
+def ocr_implement(ocr_info, prompt):
+    p = ocr_prompt+prompt+"\nOCR:"+ocr_info+"\nOutput"
+    response = client.chat.completions.create(
+    model="deepseek-chat",
+    messages=[
+        {"role": "system", "content": "You are a model for implementing criticisms to transform a prompt."},
+        {"role": "user", "content": p},
+    ],
+    stream=False
+    )
+    x = response.choices[0].message.content
+    y = parse_json_garbage(x)
+    return y["output"]
+
 
 # Simplify PROTEGI output to simple language
 # Input: Initial Caption and PROTEGI output
