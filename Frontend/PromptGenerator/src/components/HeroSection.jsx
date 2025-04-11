@@ -2,7 +2,7 @@ import { useState } from "react";
 import axios from "axios";
 import ImageUploader from "./ImageUploader";
 import Header from "./Header";
-
+import UserEdit from "./userEdit";
 const HeroSection = () => {
   const [generatedText, setGeneratedText] = useState("");
   const [generatedImage, setGeneratedImage] = useState(null);
@@ -15,13 +15,18 @@ const HeroSection = () => {
         generatedText={generatedText} 
         setGeneratedText={setGeneratedText} 
       />
-      <GenerateImageSection 
+      
+      <UserEdit 
+        generatedText={generatedText}
+        setGeneratedText={setGeneratedText}
+      />
+     {/* <GenerateImageSection 
         generatedText={generatedText} 
         setGeneratedImage={setGeneratedImage} 
         error={error} 
         setError={setError} 
       />
-      <ImageDisplaySection generatedImage={generatedImage} />
+  <ImageDisplaySection generatedImage={generatedImage} />*/}
     </div>
   );
 };
