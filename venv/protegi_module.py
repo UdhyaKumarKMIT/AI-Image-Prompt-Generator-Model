@@ -42,7 +42,7 @@ The output will be in json format, with the key as "output".
 Input:
 """
 
-ocr_promt = """
+ocr_prompt = """
 You are a model for integration ocr information of an image with a stable diffusion prompt for generating the image.
 The ocr is the text found in the image.
 You will analyse the ocr and the prompt such that it the prompt implements the ocr information in generating the image more accurately.
