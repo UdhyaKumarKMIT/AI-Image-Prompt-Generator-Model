@@ -7,8 +7,9 @@ import datetime
 import hashlib
 
 from image_caption_model import image_to_prompt
-from protegi_module import generator
+from protegi_module import generator, user_implement, ocr_implement, simple_implement
 from IPython.display import display
+from ocr import analyze_image
 
 from pymongo import MongoClient
 app = Flask(__name__)
@@ -60,15 +61,36 @@ def upload_file():
     mode = "best"
     prompt = image_to_prompt(i, mode)
     caption = generator(prompt, file_path)
-    print(caption[0])
-     # Store in MongoDB
+
+    ocr_info = analyze_image(i)
+    final_caption = ocr_implement(ocr_info, caption[0])
+
+    simple = simple_implement(caption=prompt, prompt=final_caption)
+
+    print(final_caption)
+    print(simple)
+
     image_data = {
         "image_data": image_hash,
-        "generated_caption": caption[0],
+        "generated_caption": final_caption,
+        "simple": simple
     }
     collection.insert_one(image_data)
-    return jsonify({"caption": caption[0]})
-   
+    return jsonify({"caption": final_caption, "simple": simple})
+
+@app.route("/user_edit", methods=["POST"])
+def user_edit():
+    data = request.json
+    if not data or "edit" not in data or "prompt" not in data:
+        return jsonify({"error": "User Edit not found"}), 400
+    
+    edit = data["edit"]
+    prompt = data["prompt"]
+
+    final = user_implement(edit, prompt)
+
+    return jsonify({"caption": final})
+
 
 @app.route("/generate_image", methods=["POST"])
 def generating_image():

@@ -185,9 +185,10 @@ def score_prompt_refinements(raw_caption, prompts, image_path):
         "{raw_caption}"
         
         Score the following refined prompts on a scale of 0 to 1 based on their accuracy, descriptiveness, and coherence. Return the scores as a **Python list** in the same order as the input prompts.
+        Give only the list of scores. Nothing else.
         
         Prompts:
-        {prompts}
+        {prompt_text}
         
         Output format: [score1, score2, score3, ...]"""},
     ],
