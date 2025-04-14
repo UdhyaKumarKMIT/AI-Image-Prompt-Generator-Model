@@ -44,7 +44,7 @@ export default function ImageUploader({ setGeneratedText }) {
         { headers: { "Content-Type": "multipart/form-data" } }
       );
 
-      setGeneratedText(response.data.caption);
+      setGeneratedText(response.data.simple);
     } catch (err) {
       alert("Failed to generate caption. Check backend.");
     }
