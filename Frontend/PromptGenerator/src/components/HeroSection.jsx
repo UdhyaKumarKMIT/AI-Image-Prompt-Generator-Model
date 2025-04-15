@@ -5,6 +5,7 @@ import Header from "./Header";
 import UserEdit from "./userEdit";
 const HeroSection = () => {
   const [generatedText, setGeneratedText] = useState("");
+  const [largeText, setLargeText] = useState("");
   const [generatedImage, setGeneratedImage] = useState(null);
   const [error, setError] = useState("");
 

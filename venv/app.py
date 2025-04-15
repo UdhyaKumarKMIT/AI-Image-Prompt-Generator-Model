@@ -53,7 +53,8 @@ def upload_file():
     if retrieved:
         print("Cache Found")
         print(retrieved["generated_caption"])
-        return jsonify({"caption": retrieved["generated_caption"]})
+        return jsonify({"caption": retrieved["generated_caption"],
+                        "simple":retrieved["simple"]})
     else:
         print("Not Cached")
         

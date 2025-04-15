@@ -10,6 +10,7 @@ const UserEdit = ({ generatedText }) => {
   };
 
   const userEditfn = async () => {
+    generatedText = localStorage.getItem("large")
     if (!generatedText.trim()) {
       alert("Original caption not available. Please generate one first.");
       return;
